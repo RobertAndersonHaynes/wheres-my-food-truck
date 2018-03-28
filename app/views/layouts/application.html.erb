@@ -22,7 +22,9 @@
       <ul class="right">
         <%- if current_user -%>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to 'Profile', user_path(current_user.id) %></li>
+        <%- if current_user.vendor? -%>
+        <li><%= link_to 'Vendor Profile', user_path(current_user.id) %></li>
+        <% end %>
         <% if current_user.admin? %>
         <li><%= link_to "Admin Section", users_path %></li>
         <% end %>

@@ -7,4 +7,15 @@
   <div id="delete"><%= button_to "Delete User", user_path, method: :delete, :data => {:confirm => 'Are you sure?' }%></div>
   <div id="admin-home"><%= button_to 'Admin Home', users_path, method: :get %></div>
 <% end %>
+
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 </div>
