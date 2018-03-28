@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user
       if current_user.id == @user.id &&
-        current_user.role == ('vendor' || 'admin')
+         current_user.role == ('vendor' || 'admin')
         assign_profile_picture
       else
         flash[:alert] = '***You are receiving this message because your approval
