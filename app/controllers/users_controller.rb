@@ -20,6 +20,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def create
+    @user
+  end
+
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
