@@ -10,12 +10,11 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(
       :sign_up, keys: %i[first_name last_name food_truck_name phone_number
-      city state url description]
+       city state url description]
     )
     devise_parameter_sanitizer.permit(
       :account_update, keys: %i[first_name last_name food_truck_name
-        phone_number
-      city state url description]
+       phone_number city state url description]
     )
   end
 end
