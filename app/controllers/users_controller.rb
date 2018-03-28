@@ -5,10 +5,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if current_user
-      if current_user.id == @user.id && current_user.role == 'vendor' || 'admin'
+      if current_user.id == @user.id && current_user.role == ('vendor' || 'admin')
         assign_profile_picture
       else
-        flash[:alert] = '***You are receiving this message because your approval status is still pending or you are not an approved vendor.***'
+        flash[:alert] = '***You are receiving this message because your approval
+                         status is still pending or you are not an approved
+                         vendor.***'
         redirect_to '/'
       end
     else
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
   def assign_profile_picture
     if @user.profile_pic.nil?
       @profile_pic =
-      'https://www.upslopebrewing.com/wp-content/uploads/2017/05/The_Ultimate_Food_Truck_Logo.jpg'
+        'https://www.upslopebrewing.com/wp-content/uploads/2017/05/The_Ultimate_Food_Truck_Logo.jpg'
     else
       @profile_pic = @user.profile_pic
     end

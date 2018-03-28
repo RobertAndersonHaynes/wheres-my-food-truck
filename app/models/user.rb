@@ -1,5 +1,7 @@
+# This is the User Class model
 class User < ApplicationRecord
-  validates_presence_of :first_name, :last_name, :phone_number, :city, :food_truck_name, :url, :description, :role
+  validates_presence_of :first_name, :last_name, :phone_number, :city,
+                        :food_truck_name, :url, :description, :role
 
   validates :email, uniqueness: true
   validates :password, length: { in: 6..20 }
