@@ -7,7 +7,7 @@ Object.assign(global, {
   jasmineEnzyme,
   mount,
   React,
-  shallow,
+  shallow
 });
 
 beforeEach(() => {
