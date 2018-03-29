@@ -8,14 +8,23 @@
   <div id="admin-home"><%= button_to 'Admin Home', users_path, method: :get %></div>
 <% end %>
 
+<p>Use the form below to add your location to the map so that hungry people can find you.</p>
+
 <%= form_for(@user) do |f| %>
   <div class="field">
-    <%= f.label :location %><br />
+    <%= f.label :location, "Street Address" %><br />
     <%= f.text_field :location %>
+
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button 'Add Location to Map', type: 'submit' %>
   </div>
 <% end %>
 </div>
