@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # Sessions Controller
 class Users::SessionsController < Devise::SessionsController
   prepend_before_action :require_no_authentication, only: [:new, :create]
