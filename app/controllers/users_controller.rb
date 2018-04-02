@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   # before_action :remove_password_params_if_blank, only: [:update, :edit]
 
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else
+      flash[:notice] = 'You do not have access to this page.'
+      redirect_to '/'
+    end
   end
 
   def show
@@ -31,13 +36,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.where(current_user.id == :user_id)
-    updated_user = User.update(params[:id], user_params)
-    # permitted = params.require(:user).permit(:id, :location, :city,
-    #:state, :password)
-    # if updated_user.password.blank?
-    #   updated_user[:password].delete(:password)
-    # end
-    # binding.pry
+    permitted = params.require(:user).permit(:id, :location, :city,
+                                             :state, :password)
+    updated_user = User.update(params[:id], permitted)
     if updated_user.save
       flash[:notice] = 'Your location has been added sucessfully'
       redirect_to '/'
@@ -53,13 +54,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def destroy
-    @user = User.find(params[:id])
-    if @user.destroy
-      flash[:notice] = 'Successfully deleted account.'
-      redirect_to '/'
-    end
-  end
+  def destroy; end
 
   protected
 

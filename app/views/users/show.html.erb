@@ -1,8 +1,14 @@
 <div class="user-show">
   <h2 id="food_truck_name"><%= @user.food_truck_name %></h2>
-  <img src=<%= @profile_pic %> height="200" width="200"
+  <img src=<%= @profile_pic %> height="150" width="150"
   <br>
-  <p><%= @user.email %></p>
+  <div>
+    <h4>Email: <%= @user.email %></h4>
+    <h3>Current Location</h3>
+    <h4>Street:<%= @user.location %></h4>
+    <h4>City:<%= @user.city %></h4>
+    <h4>State:<%= @user.state %></h4>
+  </div>
   <div id="location"><%= button_to 'Add/Change Location', edit_user_path, method: :get %></div>
   <% if current_user.admin? %>
   <div id="delete"><%= button_to "Delete User", user_path, method: :delete, :data => {:confirm => 'Are you sure?' }%></div>
@@ -15,5 +21,3 @@
 
   </div>
 </div>
-
- <!-- 'Approve', {:controller => "users", :action => "accept", :id => @user.id } -->
