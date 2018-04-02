@@ -4,8 +4,7 @@ class Users::SessionsController < Devise::SessionsController
   prepend_before_action :require_no_authentication, only: [:new, :create]
   prepend_before_action :allow_params_authentication!, only: :create
   prepend_before_action :verify_signed_out_user, only: :destroy
-  prepend_before_action(only: [:create, :destroy])
-                       { request.env['devise.skip_timeout'] = true }
+  prepend_before_action(only: [:create, :destroy]) { request.env['devise.skip_timeout'] = true }
 
   # GET /resource/sign_in
   def new
@@ -72,8 +71,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def all_signed_out?
-    users = Devise.mappings.keys.map
-      { |s| warden.user(scope: s, run_callbacks: false) }
+    users = Devise.mappings.keys.map { |s| warden.user(scope: s, run_callbacks: false) }
 
     users.all?(&:blank?)
   end
@@ -83,8 +81,7 @@ class Users::SessionsController < Devise::SessionsController
     # support returning empty response on GET request
     respond_to do |format|
       format.all { head :no_content }
-      format.any(*navigational_formats)
-        { redirect_to after_sign_out_path_for(resource_name) }
+      format.any(*navigational_formats) { redirect_to after_sign_out_path_for(resource_name) }
     end
   end
 end
