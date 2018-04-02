@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def accept
     @user = User.find(params[:id])
-    @user.update_without_password(role: "vendor")
+    @user.update_without_password(role: 'vendor')
     flash[:notice] = 'Vendor Aproved'
     redirect_to users_path
   end
