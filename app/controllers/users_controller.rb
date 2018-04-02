@@ -36,7 +36,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.where(current_user.id == :user_id)
-    permitted = params.require(:user).permit(:id, :location, :city, :state, :password)
+    permitted = params.require(:user).permit(:id, :location, :city,
+                                             :state, :password)
     updated_user = User.update(params[:id], permitted)
     if updated_user.save
       flash[:notice] = 'Your location has been added sucessfully'
@@ -53,8 +54,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  def destroy
-  end
+  def destroy; end
 
   protected
 

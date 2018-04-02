@@ -57,7 +57,7 @@ class DeviseController < Devise.parent_controller.constantize
 
   # Attempt to find the mapped route for devise based on request path
   def devise_mapping
-    @devise_mapping ||= request.env["devise.mapping"]
+    @devise_mapping ||= request.env['devise.mapping']
   end
 
   # Checks whether it's a devise mapped resource or not.
@@ -77,7 +77,8 @@ MESSAGE
 
   # Returns real navigational formats which are supported by Rails
   def navigational_formats
-    @navigational_formats ||= Devise.navigational_formats.select { |format| Mime::EXTENSION_LOOKUP[format.to_s] }
+    @navigational_formats ||= Devise.navigational_formats.select
+    { |format| Mime::EXTENSION_LOOKUP[format.to_s] }
   end
 
   def unknown_action!(msg)
@@ -107,7 +108,7 @@ MESSAGE
     end
 
     if authenticated && resource = warden.user(resource_name)
-      flash[:alert] = I18n.t("devise.failure.already_authenticated")
+      flash[:alert] = I18n.t('devise.failure.already_authenticated')
       redirect_to after_sign_in_path_for(resource)
     end
   end
