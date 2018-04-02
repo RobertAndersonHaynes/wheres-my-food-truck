@@ -34,6 +34,5 @@ feature 'approved vendor signs in' do
 
     expect(page).to have_content(vendor.food_truck_name)
     expect(page).to have_content(vendor.email)
-    expect(page).to have_content('Add/Change Location')
   end
 end
