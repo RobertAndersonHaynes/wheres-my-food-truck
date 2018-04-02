@@ -3,8 +3,8 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :phone_number, :city,
                         :food_truck_name, :url, :description, :role
 
-  validates :email, uniqueness: true
-  validates :password, length: { in: 6..20 }
+
+  # validates :password, length: { in: 6..20 }
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -15,5 +15,14 @@ class User < ApplicationRecord
 
   def admin?
     role == 'admin'
+  end
+
+  def update_without_password(params, *options)
+  params.delete(:password)
+  params.delete(:password_confirmation)
+
+  result = update_attributes(params, *options)
+  clean_up_passwords
+  result
   end
 end
