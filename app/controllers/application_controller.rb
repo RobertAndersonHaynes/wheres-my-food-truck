@@ -5,6 +5,15 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 
+  def update_without_password(params, *options)
+    params.delete(:password)
+    params.delete(:password_confirmation)
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
+
   protected
 
   def configure_permitted_parameters

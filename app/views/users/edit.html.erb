@@ -1,0 +1,39 @@
+<div class="form-actions">
+  <p>Use the form below to add your location to the map so that hungry people can find you.</p>
+
+  <%= form_for(@user) do |f| %>
+
+  <% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this form from being saved:</h2>
+
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :location, "Street Address" %><br />
+    <%= f.text_field :location %>
+
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+
+    <!-- <div class="field">
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "off" %>
+    </div> -->
+
+  </div>
+
+  <div class="actions">
+    <!-- <%= f.submit 'Add Location to Map' %> -->
+    <%= button_to 'Add Location', edit_user_path, method: :patch %>
+  </div>
+  <% end %>

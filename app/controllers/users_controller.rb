@@ -1,36 +1,61 @@
 # This is the controller for the user object
 class UsersController < ApplicationController
-  before_action :authorize_user, except: [:show]
+  before_action :authorize_user, except: %i[show update index edit]
+  # before_action :remove_password_params_if_blank, only: [:update, :edit]
+
+  def index
+    @users = User.all
+  end
 
   def show
     @user = User.find(params[:id])
-    if current_user
-      if current_user.id == @user.id &&
-         current_user.role == ('vendor' || 'admin')
-        assign_profile_picture
-      else
-        flash[:alert] = '***You are receiving this message because your approval
-                         status is still pending or you are not an approved
-                         vendor.***'
-        redirect_to '/'
-      end
+    # if current_user
+    if current_user.id == @user.id ||
+      current_user.role == 'vendor' || 'admin'
+      assign_profile_picture
     else
-      flash[:alert] = 'Please sign in to access your account.'
-      redirect_to new_user_session_path
+      flash[:alert] = '***You are receiving this message because your approval
+      status is still pending or you are not an approved
+      vendor.***'
+      redirect_to '/'
     end
+    # else
+    #   flash[:alert] = 'Please sign in to access your account.'
+    #   redirect_to new_user_session_path
+    # end
   end
 
-  def create
-    @user
-  end
-
-  def destroy
+  def edit
     @user = User.find(params[:id])
-    if @user.destroy
-      flash[:notice] = 'Successfully deleted User.'
-      redirect_to '/users'
+    # @user_approval.update_without_password(role: "vendor")
+    # binding.pry
+    # redirect_to users_path
+  end
+
+  def update
+    @user = User.where(current_user.id == :user_id)
+    updated_user = User.update(params[:id], user_params)
+    # permitted = params.require(:user).permit(:id, :location, :city,
+    #:state, :password)
+    # if updated_user.password.blank?
+    #   updated_user[:password].delete(:password)
+    # end
+    # binding.pry
+    if updated_user.save
+      flash[:notice] = 'Your location has been added sucessfully'
+      redirect_to '/'
+    else
+      redirect_to user_path
     end
   end
+
+ def destroy
+   @user = User.find(params[:id])
+   if @user.destroy
+     flash[:notice] = 'Successfully deleted account.'
+     redirect_to '/'
+   end
+ end
 
   protected
 
@@ -41,7 +66,20 @@ class UsersController < ApplicationController
     end
   end
 
+  # def remove_password_params_if_blank
+  #   if @user[:password].blank?
+  #     @user[:password].delete(:password)
+  #   end
+  # end
+
   private
+
+  def update_without_password(params, *options)
+    params.delete(:password)
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
 
   def assign_profile_picture
     if @user.profile_pic.nil?
@@ -50,5 +88,11 @@ class UsersController < ApplicationController
     else
       @profile_pic = @user.profile_pic
     end
+  end
+
+# Never trust parameters from the scary internet, only allow the white list
+# through.
+  def user_params
+    params.require(:user).permit(:id, :location, :city, :state, :password)
   end
 end
