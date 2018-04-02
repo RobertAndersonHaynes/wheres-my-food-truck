@@ -10,15 +10,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # if current_user
-        if current_user.id == @user.id ||
-           current_user.role == 'vendor' || 'admin'
-          assign_profile_picture
-        else
-          flash[:alert] = '***You are receiving this message because your approval
-                           status is still pending or you are not an approved
-                           vendor.***'
-          redirect_to '/'
-        end
+    if current_user.id == @user.id ||
+      current_user.role == 'vendor' || 'admin'
+      assign_profile_picture
+    else
+      flash[:alert] = '***You are receiving this message because your approval
+      status is still pending or you are not an approved
+      vendor.***'
+      redirect_to '/'
+    end
     # else
     #   flash[:alert] = 'Please sign in to access your account.'
     #   redirect_to new_user_session_path
@@ -26,28 +26,28 @@ class UsersController < ApplicationController
   end
 
   def edit
-      @user = User.find(params[:id])
-      #   @user_approval.update_without_password(role: "vendor")
-      #   binding.pry
-      # redirect_to users_path
+    @user = User.find(params[:id])
+    # @user_approval.update_without_password(role: "vendor")
+    # binding.pry
+    # redirect_to users_path
   end
 
   def update
     @user = User.where(current_user.id == :user_id)
     updated_user = User.update(params[:id], user_params)
     # permitted = params.require(:user).permit(:id, :location, :city,
-                                              #:state, :password)
-      # if updated_user.password.blank?
-      #   updated_user[:password].delete(:password)
-      # end
-   # binding.pry
-   if updated_user.save
-     flash[:notice] = 'Your location has been added sucessfully'
-     redirect_to '/'
-   else
-     redirect_to user_path
-   end
- end
+    #:state, :password)
+    # if updated_user.password.blank?
+    #   updated_user[:password].delete(:password)
+    # end
+    # binding.pry
+    if updated_user.save
+      flash[:notice] = 'Your location has been added sucessfully'
+      redirect_to '/'
+    else
+      redirect_to user_path
+    end
+  end
 
  def destroy
    @user = User.find(params[:id])
