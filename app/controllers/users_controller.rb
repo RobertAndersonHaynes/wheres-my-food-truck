@@ -1,6 +1,6 @@
 # This is the controller for the user object
 class UsersController < ApplicationController
-  before_action :authorize_user, except: %i[show update index edit]
+  before_action :authorize_user, except: %i[show update index edit accept]
   # before_action :remove_password_params_if_blank, only: [:update, :edit]
 
   def index
@@ -27,9 +27,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    # @user_approval.update_without_password(role: "vendor")
-    # binding.pry
-    # redirect_to users_path
   end
 
   def update
@@ -49,13 +46,20 @@ class UsersController < ApplicationController
     end
   end
 
- def destroy
-   @user = User.find(params[:id])
-   if @user.destroy
-     flash[:notice] = 'Successfully deleted account.'
-     redirect_to '/'
-   end
- end
+  def accept
+    @user = User.find(params[:id])
+    @user.update_without_password(role: 'vendor')
+    flash[:notice] = 'Vendor Aproved'
+    redirect_to users_path
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      flash[:notice] = 'Successfully deleted account.'
+      redirect_to '/'
+    end
+  end
 
   protected
 
@@ -93,6 +97,6 @@ class UsersController < ApplicationController
 # Never trust parameters from the scary internet, only allow the white list
 # through.
   def user_params
-    params.require(:user).permit(:id, :location, :city, :state, :password)
+    params.permit(:id, :location, :city, :state, :password)
   end
 end
