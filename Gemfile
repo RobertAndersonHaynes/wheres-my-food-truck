@@ -23,6 +23,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
+gem 'active_model_serializers'
 gem 'capybara', group: %i[development test]
 gem 'devise'
 gem 'factory_bot', group: %i[development test]

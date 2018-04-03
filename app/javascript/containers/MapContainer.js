@@ -28,7 +28,7 @@ class MapContainer extends React.Component {
           <Layer
             type="symbol"
             id="marker"
-            layout={{ "icon-image": "marker-15" }}>
+            layout={{ "icon-image": "restaurant-15" }}>
           </Layer>
         </Map>
       </div>

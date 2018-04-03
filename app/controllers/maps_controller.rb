@@ -1,4 +1,4 @@
 # This is the ApplicationController class
-class HomesController < ApplicationController
+class MapsController < ApplicationController
   def index; end
 end
