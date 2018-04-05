@@ -1,0 +1,14 @@
+.sign-up {
+  text-align: center;
+  margin-left: 20px;
+  font-family: 'Julius Sans One', sans-serif;
+}
+form.new_user {
+  text-align: center;
+  display: inline-block;
+}
+form.new_user input {
+
+  width: 500px;
+  border-radius: 15px;
+}
