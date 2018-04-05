@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Bungee+Hairline|Carrois+Gothic+SC|Julius+Sans+One|Londrina+Outline|Calligraffitti|Contrail+One|Neucha|Permanent+Marker|Sriracha|Vampiro+One');
+
+
+h1#title {
+  /* font-family: 'Permanent Marker', cursive; */
+  font-family: 'Londrina Outline', cursive;
+  font-size: 45px;
+}
+
+ul.right {
+  font-family: 'Permanent Marker', cursive;
+}
+
+h2#map-index {
+  font-family: 'Contrail One', cursive;
+  font-size: 25px;
+}
+
+.map-index {
+  font-family: 'Contrail One', cursive;
+  font-size: 25px;
+}
+ nav.top-bar {
+   height: 67px;
+
+ }
+
+ flash.flash-notice {
+   text-align: center;
+ }

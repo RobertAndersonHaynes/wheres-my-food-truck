@@ -1,4 +1,106 @@
-<h2>
+<div class="map-index">
+<h2 id="map-index">
 Checkout the food trucks in your area.
 </h2>
 <div id="app"></div>
+</div>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 45px;
+        bottom: 0;
+        width: 75%;
+      }
+/* https://cdn3.iconfinder.com/data/icons/map/500/restaurant-256.png */
+      .marker {
+        background-image: url('https://raw.githubusercontent.com/mapbox/mapbox-gl-native/6e4eb094bf2feb9be4f5d2d73b1186aed768539b/platform/ios/resources/default_marker%402x.png');
+        background-size: cover;
+        width: 25px;
+        height: 50px;
+        cursor: pointer;
+      }
+
+      .mapboxgl-popup {
+        max-width: 200px;
+      }
+
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+      }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoicmFoYXluZXM4MCIsImEiOiJjamZjb3k5bDExdm91NGFxaGJjaDhwcnEwIn0.d-dxgfRiiGePPuS99dHBPg';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v9',
+  center: [-75.163685, 39.952345],
+  zoom: 12
+});
+
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-75.170791, 39.950175]
+    },
+    properties: {
+      title: 'Joe\'s Food Truck',
+      description: 'Check me out'
+    }
+  },
+  {
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [-75.168080, 39.947426]
+    },
+    properties: {
+      title: 'Foodies',
+      description: 'Buy some food.'
+    }
+  }]
+};
+
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+  .setHTML('<h4>' + marker.properties.title + '</h4><p>' + marker.properties.description + '</p>'))
+  .addTo(map);
+});
+
+</script>
+
+</body>
+</html> -->
