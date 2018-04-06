@@ -22,16 +22,14 @@ class MapContainer extends React.Component {
     this.state = {
       users: [],
       coordinates: [],
-      properties: {
-        "marker-color": "#7e0a2d",
-        "marker-size": "medium",
-        "marker-symbol": "restaurant"
-      },
-      center: []
+      center: [-75.163608, 39.952430],
+      zoom: [13],
+      selectedUser: null
     };
     this.getUsers = this.getUsers.bind(this);
     this.getCoordinates = this.getCoordinates.bind(this)
-    this.markerClick = this.markerClick.bind(this)
+    this.handleMarkerClick = this.handleMarkerClick.bind(this)
+    this.handlePopupClick = this.handlePopupClick.bind(this)
   }
 
   getUsers() {
@@ -93,22 +91,28 @@ class MapContainer extends React.Component {
     map.getCanvas().style.cursor = cursor;
   }
 
-  markerClick = (user: users, { feature }: { feature: any }) => {
-    this.setState({
-      center: [user.coordinates[0], user.coordinates[1]],
-      zoom: [10],
-      user
-    });
-  };
-//
-// handleMarkerClick(e){
-//      let center = [e.feature.properties.lng, e.feature.properties.lat]
-//      this.props.movies.map( movie => {
-//        if (movie.id == e.feature.properties.movieId){
-//          this.setState({selectedMovie: movie, center: center})
-//        }
-//      })
-//    }
+  // markerClick = (users: user, { feature }: { feature: any }) => {
+  //   let user = Object.assign([], this.state.users)
+  //   this.setState({
+  //     center: [userLong, userLat],
+  //     zoom: [10],
+  //     user
+  //   });
+  // };
+
+handleMarkerClick(e){
+     let center = [e.feature.properties.userLong, e.feature.properties.userLat]
+     this.state.users.map( user => {
+       if (user.id == e.feature.properties.userId){
+         this.setState({selectedUser: user, center: center, zoom: [15]})
+       }
+     })
+   }
+
+handlePopupClick(e){
+    let center = [-75.163608, 39.952430]
+        this.setState({selectedUser: 'user', center: center, zoom: [13]})
+      }
 
 
 
@@ -117,29 +121,51 @@ render() {
   featureArray = this.state.users.map(user => {
     if (user.location != "") {
       return(
-        <Feature
-          key={user.id}
-          properties={this.state.properties}
-          onMouseEnter={this.onToggleHover.bind(this, 'pointer')}
-          onMouseLeave={this.onToggleHover.bind(this, '')}
-          // onClick={this.markerClick.bind(this, user[user.id])}
-          coordinates={user.coordinates}
-          ></Feature>
-        )
-      }
+          <Feature
+            key={user.id}
+            properties={{
+              'userId': user.id,
+              'userFoodTruck': user.food_truck_name,
+              'userUrl': user.url,
+              'userDescription': user.description,
+              'userLong': user.coordinates[0],
+              'userLat': user.coordinates[1]
+            }}
+            onMouseEnter={this.onToggleHover.bind(this, 'pointer')}
+            onMouseLeave={this.onToggleHover.bind(this, '')}
+            onClick={this.handleMarkerClick}
+            coordinates={user.coordinates}
+            ></Feature>
+        )}
     }).filter(x => x)
+
+  let vendorPopup = this.state.users.map(user => {
+    // debugger;
+    if (user == this.state.selectedUser) {
+      return(
+        <Popup key={user.id} coordinates={user.coordinates} anchor='bottom' onClick={this.handlePopupClick}>
+          <div>{user.food_truck_name}</div>
+          <div>
+            {user.description}<br />
+            <a href={`http://${user.url}`} target="_blank">{user.url}</a>
+          </div>
+        </Popup>
+      )
+    }
+  }).filter(x => x)
 
     return(
       <div>
         <h6>Use the map below to find food trucks</h6>
         <Map
-          center={[-75.163608, 39.952430]}
-          zoom={[13]}
+          center={this.state.center}
+          zoom={this.state.zoom}
           style="mapbox://styles/rahaynes80/cjfk1xk5m5d642rpdlj48gmkt"
           containerStyle={{
             height: "500px",
             width: "100%"
           }}>
+          {vendorPopup}
           <Layer
             type="symbol"
             id="marker"
@@ -147,9 +173,10 @@ render() {
 
             {featureArray}
             {/* <Feature
+              // {vendorPopup}
               coordinates={[-75.157751, 39.961816]}
               ></Feature> */}
-            </Layer>
+</Layer>
           </Map>
         </div>
       )
