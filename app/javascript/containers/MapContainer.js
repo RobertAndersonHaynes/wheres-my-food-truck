@@ -8,14 +8,6 @@ const Map = ReactMapboxGl({
   accessToken: "pk.eyJ1IjoicmFoYXluZXM4MCIsImEiOiJjamZjb3k5bDExdm91NGFxaGJjaDhwcnEwIn0.d-dxgfRiiGePPuS99dHBPg"
 });
 
-// const StyledPopup = styled.div`
-//   background: white;
-//   color: #3f618c;
-//   font-weight: 400;
-//   padding: 5px;
-//   border-radius: 2px;
-// `;
-
 class MapContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -156,14 +148,16 @@ render() {
 
     return(
       <div>
-        <h6>Use the map below to find food trucks</h6>
+        <h6>If you see a food truck on the map they are open</h6>
         <Map
           center={this.state.center}
           zoom={this.state.zoom}
-          style="mapbox://styles/rahaynes80/cjfk1xk5m5d642rpdlj48gmkt"
+          style="mapbox://styles/rahaynes80/cjfqxqn685j9a2rk3m2f8zskb"
+          // style="mapbox://styles/rahaynes80/cjfk1xk5m5d642rpdlj48gmkt"
+          // style="mapbox://styles/rahaynes80/cjfpt911c4cuy2rka9s3rmnrs"
           containerStyle={{
             height: "500px",
-            width: "100%"
+            width: "60%"
           }}>
           {vendorPopup}
           <Layer

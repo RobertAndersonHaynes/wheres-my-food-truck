@@ -1,5 +1,5 @@
 <div class="form-actions">
-  <p>Use the form below to add your location to the map so that hungry people can find you.</p>
+  <h4>Use the form below to add your location to the map so that hungry people can find you.</h4>
 
   <%= form_for(@user) do |f| %>
 
@@ -16,13 +16,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :location, "Street Address" %><br />
+    <%= f.label :location, "Street Address" %>
     <%= f.text_field :location %>
 
-    <%= f.label :city %><br />
+    <%= f.label :city %>
     <%= f.text_field :city %>
 
-    <%= f.label :state %><br />
+    <%= f.label :state %>
     <%= f.text_field :state %>
 
     <!-- <div class="field">

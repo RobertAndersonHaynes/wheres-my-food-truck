@@ -1,0 +1,78 @@
+div.admin-index {
+  text-align: center;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+ul#users-list {
+  list-style-type: none;
+  margin-bottom: 100px;
+}
+
+
+div.admin-index h2{
+  font-family: 'Julius Sans One', sans-serif;
+  margin-top: 70px;
+  margin-bottom: 50px;
+  text-shadow: 3px 3px 4px rgba(150, 150, 150, 1);
+  font-weight: bold;
+
+}
+
+form.button_to input {
+  font-family: 'Julius Sans One', sans-serif;
+
+}
+
+li.user-link {
+  margin-bottom: 15px;
+}
+
+div#delete input:hover {
+  border: 1px red solid;
+  background: rgba(0,0,0,0);
+  color: red;
+  box-shadow: inset 0 0 0 3px red;
+  box-shadow: -14px 6px 187px -23px rgba(227,0,0,1);
+}
+
+div.map-home {
+  text-align: center;
+  display: inline-block;
+  border: 1px #4d463b solid;
+  color: #F9FEFF;
+  background-color: #a39b8e;
+  font-size: 25px;
+  font-family: 'Julius Sans One', sans-serif;
+  font-weight: bold;
+  margin-bottom: 100px;
+  height: 75px;
+  width: 200px;
+  box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
+  border-radius: 15px;
+}
+
+div.map-home a {
+  display: inline-block;
+  margin: 10%;
+  color: white;
+}
+
+div.map-home:hover a {
+  color: #011f6b;
+}
+
+div.map-home:hover {
+  border: 1px #011f6b solid;
+  background: rgba(0,0,0,0);
+  color: #011f6b;
+  box-shadow: inset 0 0 0 3px #011f6b;
+  box-shadow: -14px 6px 119px -9px rgba(1,31,107,1);
+}
+
+div#admin-home form.button_to input:hover{
+  border: 1px #011f6b solid;
+  background: rgba(0,0,0,0);
+  color: #011f6b;
+  box-shadow: inset 0 0 0 3px #011f6b;
+  box-shadow: -14px 6px 119px -9px rgba(1,31,107,1);
+}

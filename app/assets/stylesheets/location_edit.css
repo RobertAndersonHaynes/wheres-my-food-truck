@@ -1,39 +1,52 @@
-.sign-up {
-  text-align: center;
-  font-family: 'Julius Sans One', sans-serif;
-}
-
-.sign-up h2 {
-  font-family: 'Julius Sans One', sans-serif;
-  margin-bottom: 15px;
-  margin-top: 70px;
-  text-shadow: 3px 3px 4px rgba(150, 150, 150, 1);
-}
-
-.sign-up h5 {
-  font-family: 'Julius Sans One', sans-serif;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
-
-form#new_user {
+form.edit_user {
   text-align: center;
   display: inline-block;
 }
 
-div.signup-form-field {
+div.location-edit {
+  text-align: center;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+div.form-actions {
+  font-family: 'Julius Sans One', sans-serif;
+  margin-bottom: 125px;
+  text-align: center;
+}
+
+div.actions {
+  margin-bottom: 100px;
+}
+
+div.field {
+  text-align: center;
+  display: inline-block;
   margin-bottom: 50px;
 }
 
-div.signup-form-field label {
-font-size: 20px;
-height: 35px;
+div.form-actions h4 {
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-bottom: 60px;
+  margin-top: 50px;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
-div.signup-form-field input {
+div.location-edit-form-field {
+  width: 500px;
+  border-radius: 15px;
+  height: 25px;
+}
+
+div.field label {
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+div.field input {
   font-size: 20px;
   height: 40px;
-  margin-bottom: 10px;
+  margin-bottom: 45px;
   background-color: #F0F0F0;
   box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
   width: 500px;
@@ -42,20 +55,11 @@ div.signup-form-field input {
   padding-left: 20px;
 }
 
-div.signup-form-field input#user_password_confirmation {
-  font-size: 25px;
-  height: 40px;
-  margin-bottom: 10px;
-  background-color: #F0F0F0;
-  box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
-  margin-bottom: 75px;
-}
-
-div.signup-actions input {
+div.actions input {
   border-radius: 15px;
-  border: 1px #4d463b solid;
-  color: #F9FEFF;
-  background-color: #a39b8e;
+  border: 1px black solid;
+  color: white;
+  background-color: grey;
   font-size: 25px;
   font-family: 'Julius Sans One', sans-serif;
   font-weight: bold;
@@ -65,7 +69,7 @@ div.signup-actions input {
   box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
 }
 
-div.signup-actions input:hover {
+div.actions input:hover {
   border: 1px #46B66B solid;
   background: rgba(0,0,0,0);
   color: #46B66B;

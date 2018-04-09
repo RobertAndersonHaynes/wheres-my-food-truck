@@ -1,23 +1,33 @@
 <div class="user-show">
-  <h2 id="food_truck_name"><%= @user.food_truck_name %></h2>
-  <img src=<%= @profile_pic %> height="150" width="150"
+  <div class="user-show-details">
+  <h2 id="food_truck_name"><strong>Hello!</strong> <%= @user.food_truck_name %></h2>
+  <!-- <img src=<%= @profile_pic %> height="150" width="150" -->
   <br>
-  <div>
-    <h4>Email: <%= @user.email %></h4>
-    <h3>Current Location</h3>
-    <h4>Street:<%= @user.location %></h4>
-    <h4>City:<%= @user.city %></h4>
-    <h4>State:<%= @user.state %></h4>
+  <div class="user-details">
+    <h4><strong>Email:</strong> <%= @user.email %></h4>
+    <h3><strong>Current Location:</strong></h3>
+    <div class="location-details">
+      <h4><strong>Street:</strong> <%= @user.location %></h4>
+      <h4><strong>City:</strong> <%= @user.city %></h4>
+      <h4 id="state"><strong>State:</strong> <%= @user.state %></h4>
+    </div>
+    <% if current_user.admin? %>
+    <h4>First Name: <%= @user.first_name %></h4>
+    <h4>Last Name: <%= @user.last_name %></h4>
+    <h4>Phone Number: <%= @user.phone_number %></h4>
+    <h4>Description: <%= @user.description %></h4>
+    <h4>Website: <%= @user.url %></h4>
+    <% end %>
   </div>
   <div id="location"><%= button_to 'Add/Change Location', edit_user_path, method: :get %></div>
   <% if current_user.admin? %>
-  <div id="delete"><%= button_to "Delete User", user_path, method: :delete, :data => {:confirm => 'Are you sure?' }%></div>
+  <div id="delete"><%= button_to "Delete Vendor", user_path, method: :delete, :data => {:confirm => 'Are you sure?' }%></div>
     <% if @user.role == 'user' %>
   <div id="approve"><%= button_to 'Approve', accept_user_path(@user), method: :put %></div>
     <% end %>
 
   <div id="admin-home"><%= button_to 'Admin Home', users_path, method: :get %></div>
   <% end %>
-
+</div>
   </div>
 </div>
