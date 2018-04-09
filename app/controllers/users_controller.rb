@@ -1,6 +1,7 @@
 # This is the controller for the user object
 class UsersController < ApplicationController
-  before_action :authorize_user, except: %i[show update index edit accept destroy]
+  before_action :authorize_user, except: %i[show update index edit accept
+                                            destroy]
   # before_action :remove_password_params_if_blank, only: [:update, :edit]
 
   def index
