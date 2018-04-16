@@ -25,15 +25,9 @@
     <%= f.label :state %>
     <%= f.text_field :state %>
 
-    <!-- <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div> -->
-
   </div>
 
   <div class="actions">
-    <!-- <%= f.submit 'Add Location to Map' %> -->
     <%= button_to 'Add Location', edit_user_path, method: :patch %>
   </div>
   <% end %>
