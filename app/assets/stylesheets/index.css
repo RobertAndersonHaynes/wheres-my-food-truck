@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Hairline|Carrois+Gothic+SC|Julius+Sans+One|Londrina+Outline|Calligraffitti|Contrail+One|Neucha|Permanent+Marker|Sriracha|Vampiro+One');
 
-/* font-family: 'Carrois Gothic SC', sans-serif;
-font-family: 'Julius Sans One', sans-serif;
-font-family: 'Londrina Outline', cursive;
-font-family: 'Bungee Hairline', cursive; */
 body {
   background-color: #FBF5ED;
   color: #053442;
 }
 h1#title a {
-  /* font-family: 'Permanent Marker', cursive; */
   font-family: 'Londrina Outline', cursive;
   font-size: 45px;
   font-weight: bold;

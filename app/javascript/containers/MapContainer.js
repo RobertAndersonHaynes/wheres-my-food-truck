@@ -152,7 +152,6 @@ class MapContainer extends React.Component {
                 type="symbol"
                 id="marker"
                 layout={{ "icon-image": "restaurant-15", "icon-size": 2 }}>
-
                 {featureArray}
               </Layer>
             </Map>

@@ -2,7 +2,6 @@
 class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :phone_number, :city,
                         :food_truck_name, :url, :description, :role
-  # validates :password, length: { in: 6..20 }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
