@@ -3,22 +3,26 @@
   <h2 id="food_truck_name"><strong>Hello!</strong> <%= @user.food_truck_name %></h2>
   <br>
   <div class="user-details">
-    <h4><strong>Email:</strong> <%= @user.email %></h4>
     <h3><strong>Current Location:</strong></h3>
     <div class="location-details">
       <h4><strong>Street:</strong> <%= @user.location %></h4>
       <h4><strong>City:</strong> <%= @user.city %></h4>
       <h4 id="state"><strong>State:</strong> <%= @user.state %></h4>
     </div>
-    <% if current_user.admin? %>
-    <h4>First Name: <%= @user.first_name %></h4>
-    <h4>Last Name: <%= @user.last_name %></h4>
-    <h4>Phone Number: <%= @user.phone_number %></h4>
-    <h4>Description: <%= @user.description %></h4>
-    <h4>Website: <%= @user.url %></h4>
-    <% end %>
+    <h3><strong>INFO:</strong></h3>
+    <div class="info-details">
+      <h4><strong>First Name:</strong> <%= @user.first_name %></h4>
+      <h4><strong>Last Name:</strong> <%= @user.last_name %></h4>
+      <h4><strong>Email:</strong> <%= @user.email %></h4>
+      <h4><strong>Phone Number:</strong> <%= @user.phone_number %></h4>
+      <h4><strong>Description:</strong> <%= @user.description %></h4>
+      <h4><strong>Website:</strong> <%= @user.url %></h4>
+    </div>
   </div>
-  <div id="location"><%= button_to 'Add/Change Location', edit_user_path, method: :get %></div>
+  <div class="vendor-show">  
+    <div id="location"><%= button_to 'Add/Change Location', edit_user_path, method: :get %></div>
+    <div id="edit"><%= button_to 'Edit Your Info', edit_user_registration_path, method: :get %></div>
+  </div>
   <% if current_user.admin? %>
   <div id="delete"><%= button_to "Delete Vendor", user_path, method: :delete, :data => {:confirm => 'Are you sure?' }%></div>
     <% if @user.role == 'user' %>

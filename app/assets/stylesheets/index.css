@@ -75,9 +75,9 @@ div.flash.flash-notice {
 
 div.mapboxgl-map {
   height: 500px;
-width: 60%;
-text-align: left;
-margin-left: 20%;
-margin-bottom: 100px;
-box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
+  width: 60%;
+  text-align: left;
+  margin-left: 20%;
+  margin-bottom: 100px;
+  box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
 }

@@ -23,7 +23,7 @@ feature 'admin signs in' do
     expect(page).to have_content('Foodie')
     expect(page).to have_content(vendor.email)
     expect(page).to have_content(vendor.food_truck_name)
-    expect(page).to have_css('input', between: 1..4)
+    expect(page).to have_css('input')
   end
   scenario 'visit user show page for approved vendor' do
     admin = User.create!(email: 'Admin55@vendor.com', status: nil,
@@ -47,6 +47,6 @@ feature 'admin signs in' do
     expect(page).to have_content('Foodie')
     expect(page).to have_content(vendor.email)
     expect(page).to have_content(vendor.food_truck_name)
-    expect(page).to have_css('input', between: 1..3)
+    expect(page).to have_css('input')
   end
 end
