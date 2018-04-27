@@ -2,7 +2,6 @@
 class UsersController < ApplicationController
   before_action :authorize_user, except: %i[show update index edit accept
                                             destroy]
-  # before_action :remove_password_params_if_blank, only: [:update, :edit]
 
   def index
     if current_user.admin?
@@ -15,7 +14,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    # if current_user
     if current_user.id == @user.id ||
       current_user.role == 'vendor' || 'admin'
       assign_profile_picture
@@ -25,10 +23,6 @@ class UsersController < ApplicationController
       vendor.***'
       redirect_to '/'
     end
-    # else
-    #   flash[:alert] = 'Please sign in to access your account.'
-    #   redirect_to new_user_session_path
-    # end
   end
 
   def edit
@@ -71,12 +65,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
-
-  # def remove_password_params_if_blank
-  #   if @user[:password].blank?
-  #     @user[:password].delete(:password)
-  #   end
-  # end
 
   private
 

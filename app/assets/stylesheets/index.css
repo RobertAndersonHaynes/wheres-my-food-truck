@@ -1,15 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Bungee+Hairline|Carrois+Gothic+SC|Julius+Sans+One|Londrina+Outline|Calligraffitti|Contrail+One|Neucha|Permanent+Marker|Sriracha|Vampiro+One');
 
-/* font-family: 'Carrois Gothic SC', sans-serif;
-font-family: 'Julius Sans One', sans-serif;
-font-family: 'Londrina Outline', cursive;
-font-family: 'Bungee Hairline', cursive; */
 body {
   background-color: #FBF5ED;
   color: #053442;
 }
 h1#title a {
-  /* font-family: 'Permanent Marker', cursive; */
   font-family: 'Londrina Outline', cursive;
   font-size: 45px;
   font-weight: bold;
@@ -78,18 +73,11 @@ div.flash.flash-notice {
   font-family: 'Julius Sans One', sans-serif;
 }
 
-canvas.mapboxgl-canvas {
-  /* text-align: center; */
-  /* margin-left: 20%; */
-  /* margin-right: 20%; */
-}
-
 div.mapboxgl-map {
   height: 500px;
 width: 60%;
 text-align: left;
 margin-left: 20%;
-/* margin-right: 20%; */
 margin-bottom: 100px;
 box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
 }

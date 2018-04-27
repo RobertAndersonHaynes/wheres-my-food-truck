@@ -10,15 +10,12 @@ padding-top: 25px;
   margin-left: 25%;
   margin-right: 25%;
   font-family: 'Julius Sans One', sans-serif;
-  /* box-shadow: 13px 11px 29px 0px rgba(188,193,194,1); */
   margin-bottom: 100px;
-  /* border-radius: 15px; */
 }
 
 div.user-show-details h2 {
   font-family: 'Julius Sans One', sans-serif;
   margin-top: 20px;
-  /* margin-bottom: 70px; */
 }
 
 div.user-show-details h2#food_truck_name {
@@ -43,7 +40,6 @@ div.user-show-details h4#state {
 
 div.user-details {
   background-color: white;
-  /* margin-top: 70px; */
   padding-top: 25px;
   box-shadow: 13px 11px 29px 0px rgba(188,193,194,1);
   padding-bottom: 25px;

@@ -83,36 +83,27 @@ class MapContainer extends React.Component {
     map.getCanvas().style.cursor = cursor;
   }
 
-  // markerClick = (users: user, { feature }: { feature: any }) => {
-  //   let user = Object.assign([], this.state.users)
-  //   this.setState({
-  //     center: [userLong, userLat],
-  //     zoom: [10],
-  //     user
-  //   });
-  // };
-
-handleMarkerClick(e){
-     let center = [e.feature.properties.userLong, e.feature.properties.userLat]
-     this.state.users.map( user => {
-       if (user.id == e.feature.properties.userId){
-         this.setState({selectedUser: user, center: center, zoom: [15]})
-       }
-     })
-   }
-
-handlePopupClick(e){
-    let center = [-75.163608, 39.952430]
-        this.setState({selectedUser: 'user', center: center, zoom: [13]})
+  handleMarkerClick(e){
+    let center = [e.feature.properties.userLong, e.feature.properties.userLat]
+    this.state.users.map( user => {
+      if (user.id == e.feature.properties.userId){
+        this.setState({selectedUser: user, center: center, zoom: [15]})
       }
+    })
+  }
+
+  handlePopupClick(e){
+    let center = [-75.163608, 39.952430]
+    this.setState({selectedUser: 'user', center: center, zoom: [13]})
+  }
 
 
 
-render() {
-  let featureArray = []
-  featureArray = this.state.users.map(user => {
-    if (user.location != "") {
-      return(
+  render() {
+    let featureArray = []
+    featureArray = this.state.users.map(user => {
+      if (user.location != "") {
+        return(
           <Feature
             key={user.id}
             properties={{
@@ -128,52 +119,44 @@ render() {
             onClick={this.handleMarkerClick}
             coordinates={user.coordinates}
             ></Feature>
-        )}
-    }).filter(x => x)
+          )}
+        }).filter(x => x)
 
-  let vendorPopup = this.state.users.map(user => {
-    // debugger;
-    if (user == this.state.selectedUser) {
-      return(
-        <Popup key={user.id} coordinates={user.coordinates} anchor='bottom' onClick={this.handlePopupClick}>
-          <div>{user.food_truck_name}</div>
+        let vendorPopup = this.state.users.map(user => {
+          if (user == this.state.selectedUser) {
+            return(
+              <Popup key={user.id} coordinates={user.coordinates} anchor='bottom' onClick={this.handlePopupClick}>
+                <div>{user.food_truck_name}</div>
+                <div>
+                  {user.description}<br />
+                  <a href={`http://${user.url}`} target="_blank">{user.url}</a>
+                </div>
+              </Popup>
+            )
+          }
+        }).filter(x => x)
+
+        return(
           <div>
-            {user.description}<br />
-            <a href={`http://${user.url}`} target="_blank">{user.url}</a>
+            <h6>If you see a food truck on the map they are open</h6>
+            <Map
+              center={this.state.center}
+              zoom={this.state.zoom}
+              style="mapbox://styles/rahaynes80/cjfqxqn685j9a2rk3m2f8zskb"
+              containerStyle={{
+                height: "500px",
+                width: "60%"
+              }}>
+              {vendorPopup}
+              <Layer
+                type="symbol"
+                id="marker"
+                layout={{ "icon-image": "restaurant-15", "icon-size": 2 }}>
+                {featureArray}
+              </Layer>
+            </Map>
           </div>
-        </Popup>
-      )
+        )
+      }
     }
-  }).filter(x => x)
-
-    return(
-      <div>
-        <h6>If you see a food truck on the map they are open</h6>
-        <Map
-          center={this.state.center}
-          zoom={this.state.zoom}
-          style="mapbox://styles/rahaynes80/cjfqxqn685j9a2rk3m2f8zskb"
-          // style="mapbox://styles/rahaynes80/cjfk1xk5m5d642rpdlj48gmkt"
-          // style="mapbox://styles/rahaynes80/cjfpt911c4cuy2rka9s3rmnrs"
-          containerStyle={{
-            height: "500px",
-            width: "60%"
-          }}>
-          {vendorPopup}
-          <Layer
-            type="symbol"
-            id="marker"
-            layout={{ "icon-image": "restaurant-15", "icon-size": 2 }}>
-
-            {featureArray}
-            {/* <Feature
-              // {vendorPopup}
-              coordinates={[-75.157751, 39.961816]}
-              ></Feature> */}
-</Layer>
-          </Map>
-        </div>
-      )
-    }
-  }
-  export default MapContainer;
+    export default MapContainer;
